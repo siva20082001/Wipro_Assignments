@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Conference Registration Form</title>
+    <script>
+        function validateForm() {
+            var form = document.forms["confForm"];
+            var requiredFields = [
+                "fullname", "email", "gender", "country", "photo",
+                "username", "password", "confirm", "interests", "contact",
+                "paymentmethod", "cardnumber", "month", "year", "cvv", "terms"
+            ];
+            for (var i = 0; i < requiredFields.length; i++) {
+                var field = form[requiredFields[i]];
+                if (field) {
+                    if ((field.type === "radio" || field.type === "checkbox") && !form[requiredFields[i]].checked) {
+                        var group = form[requiredFields[i]];
+                        var checked = false;
+                        for (var j = 0; j < group.length; j++) {
+                            if (group[j].checked) { checked = true; break; }
+                        }
+                        if (!checked) {
+                            alert("Please fill in/select: " + requiredFields[i]);
+                            return false;
+                        }
+                    } else if (field.type !== "radio" && field.type !== "checkbox" && field.value.trim() === "") {
+                        alert("Please fill in: " + requiredFields[i]);
+                        field.focus();
+                        return false;
+                    }
+                }
+            }
+            if (form["password"].value !== form["confirm"].value) {
+                alert("Passwords do not match!");
+                return false;
+            }
+            if (!form["terms"].checked) {
+                alert("You must agree to the Terms & Conditions.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #fff;">
+
+<h2 style="text-align: center; text-transform: uppercase;">Online Conferences Registration Form</h2>
+
+<form name="confForm" action="submit.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+    <table border="1" cellpadding="6" cellspacing="0" align="center" style="border-collapse: collapse; width: 450px; font-size: 14px;">
+
+        <!-- Personal Information -->
+        <tr>
+            <th colspan="2" style="background-color: #f5f5f5; text-align: left; font-size: 15px;">Personal Information</th>
+        </tr>
+        <tr>
+            <td style="width: 160px;">Full Name</td>
+            <td><input type="text" name="fullname" style="width: 200px;"></td>
+        </tr>
+        <tr>
+            <td>Email Address</td>
+            <td>
+                <input type="text" name="email" style="width: 200px;"><br>
+                <small>format: user@example.com</small>
+            </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+            </td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>
+                <select name="country" style="width: 206px;">
+                    <option value="">--Select--</option>
+                    <option>India</option>
+                    <option>USA</option>
+                    <option>UK</option>
+                    <option>Canada</option>
+                    <option>Australia</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Profile Photo Upload</td>
+            <td><input type="file" name="photo" style="width: 206px;"></td>
+        </tr>
+
+        <!-- Account Preferences -->
+        <tr>
+            <th colspan="2" style="background-color: #f5f5f5; text-align: left; font-size: 15px;">Account Preferences</th>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="username" style="width: 200px;"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password" style="width: 200px;"></td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td><input type="password" name="confirm" style="width: 200px;"></td>
+        </tr>
+        <tr>
+            <td>Interests</td>
+            <td>
+                <input type="checkbox" name="interests" value="Web Development"> Web Development
+                <input type="checkbox" name="interests" value="AI"> AI
+                <input type="checkbox" name="interests" value="Cloud"> Cloud
+            </td>
+        </tr>
+        <tr>
+            <td>Preferred Contact Method</td>
+            <td>
+                <input type="radio" name="contact" value="Email"> Email
+                <input type="radio" name="contact" value="Phone"> Phone
+            </td>
+        </tr>
+        <tr>
+            <td>Special Requirements / Comments</td>
+            <td><textarea name="comments" rows="3" style="width: 200px;"></textarea></td>
+        </tr>
+
+        <!-- Payment Details -->
+        <tr>
+            <th colspan="2" style="background-color: #f5f5f5; text-align: left; font-size: 15px;">Payment Details</th>
+        </tr>
+        <tr>
+            <td>Payment Method</td>
+            <td>
+                <select name="paymentmethod" style="width: 206px;">
+                    <option value="">--Select--</option>
+                    <option>Credit Card</option>
+                    <option>Debit Card</option>
+                    <option>PayPal</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Card Number</td>
+            <td><input type="text" name="cardnumber" style="width: 200px;"></td>
+        </tr>
+        <tr>
+            <td>Expiry Date</td>
+            <td>
+                <select name="month" style="width: 90px;">
+                    <option value="">Month</option>
+                    <option>01</option><option>02</option><option>03</option><option>04</option>
+                    <option>05</option><option>06</option><option>07</option><option>08</option>
+                    <option>09</option><option>10</option><option>11</option><option>12</option>
+                </select>
+                <select name="year" style="width: 90px;">
+                    <option value="">Year</option>
+                    <option>2025</option><option>2026</option><option>2027</option>
+                    <option>2028</option><option>2029</option><option>2030</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>CVV</td>
+            <td><input type="password" name="cvv" style="width: 50px;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="checkbox" name="terms" value="agree"> I agree to Terms
+            </td>
+        </tr>
+
+        <!-- Form Controls -->
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

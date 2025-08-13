@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    line-height: 1.5;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.categories {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.categories th, .categories td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: left;
+}
+
+.video-form {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.video-form iframe {
+    width: 400px;
+    height: 250px;
+    border: none;
+}
+
+.video-form form {
+    background: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
