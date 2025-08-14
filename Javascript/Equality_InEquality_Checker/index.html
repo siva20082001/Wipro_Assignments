@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equality & Inequality Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      padding: 5px;
+      width: 200px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 8px 15px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Equality & Inequality Checker</h2>
+
+  <label>First Value:
+    <input type="text" id="value1" placeholder="Enter first value">
+  </label>
+
+  <label>Second Value:
+    <input type="text" id="value2" placeholder="Enter second value">
+  </label>
+
+  <button onclick="checkValues()">Check</button>
+
+  <div id="output"></div>
+
+  <script>
+    function checkValues() {
+      let value1 = document.getElementById("value1").value;
+      let value2 = document.getElementById("value2").value;
+
+      
+      let numValue1 = Number(value1);
+      let numValue2 = Number(value2);
+
+      let output = "";
+
+      
+      output += `First Value: ${value1} (${typeof value1})\n`;
+      output += `Second Value: ${value2} (${typeof value2})\n\n`;
+
+      
+      output += `Using == : ${value1 == value2} → Equality ignores type\n`;
+
+      
+      output += `Using === : ${value1 === value2} → Strict equality checks type too\n`;
+
+  
+      output += `Using != : ${value1 != value2} → ${value1 != value2 ? "Values differ" : "Values considered equal"}\n`;
+
+      
+      output += `Using !== : ${value1 !== value2} → Strict inequality because types differ\n`;
+
+      
+      output += `\nAfter converting both values to Number:\n`;
+      output += `First Value as Number: ${numValue1} (${typeof numValue1})\n`;
+      output += `Second Value as Number: ${numValue2} (${typeof numValue2})\n`;
+      output += `Using === after conversion: ${numValue1 === numValue2}\n`;
+
+      document.getElementById("output").innerHTML = `<pre>${output}</pre>`;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Customers - Dynamic Array</title>
+</head>
+<body>
+    <h2>Bank Customers - Dynamic Array Creation & Manipulation</h2>
+
+    <script>
+        
+        let numCustomers = parseInt(prompt("Enter number of customers to register:"));
+        
+        
+        let customers = [];
+        for (let i = 0; i < numCustomers; i++) {
+            let name = prompt(`Enter name of customer ${i + 1}:`);
+            customers.push(name);
+        }
+
+        
+        document.write("Original Customers: " + customers.join(", ") + "<br>");
+
+        
+        document.write("Customers using for...of:<br>");
+        for (let customer of customers) {
+            document.write(customer + "<br>");
+        }
+
+        
+        document.write("<br>Customer IDs using for...in:<br>");
+        for (let id in customers) {
+            document.write(id + "<br>");
+        }
+
+        
+        customers.push("Anita");
+        document.write("<br>After push('Anita'): " + customers.join(", ") + "<br>");
+
+        
+        customers.pop();
+        document.write("After pop(): " + customers.join(", ") + "<br>");
+
+        
+        customers.splice(1, 0, "Vikram");
+        document.write("After insert 'Vikram' at position 1: " + customers.join(", ") + "<br>");
+
+        
+        customers.splice(2, 1); 
+        document.write("After delete at position 2: " + customers.join(", ") + "<br>");
+
+        
+        document.write("Final Customers: " + customers.join(", ") + "<br>");
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .yes { background-color: #4CAF50; color: white; }
+        .no { background-color: #f44336; color: white; }
+        .option { background-color: #2196F3; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="gameContainer">
+    <h2>Welcome to the Quiz Game!</h2>
+    <p id="message">Click below to start.</p>
+    <button onclick="startGame()">Start Game</button>
+</div>
+
+<script>
+let userName = "";
+
+function startGame() {
+    alert("Welcome to the Quiz Game!");
+    userName = prompt("What is your name?");
+    if (!userName) userName = "Guest";
+    
+    let ready = confirm(userName + ", are you ready for the quiz?");
+    if (ready) {
+        showQuestion();
+    } else {
+        document.getElementById("message").textContent = "Okay, " + userName + ". Maybe next time!";
+    }
+}
+
+function showQuestion() {
+    document.getElementById("gameContainer").innerHTML = `
+        <h2>Question for ${userName}</h2>
+        <p>Which is the capital of France?</p>
+        <button class="option" onclick="checkAnswer('A')">A. Paris</button>
+        <button class="option" onclick="checkAnswer('B')">B. London</button>
+        <button class="option" onclick="checkAnswer('C')">C. Rome</button>
+        <button class="option" onclick="checkAnswer('D')">D. Berlin</button>
+    `;
+}
+
+function checkAnswer(answer) {
+    if (answer === 'A') {
+        alert("Correct! Well done, " + userName + "!");
+    } else {
+        alert("Wrong answer, " + userName + ". The correct answer is A. Paris.");
+    }
+    location.reload(); 
+}
+</script>
+
+</body>
+</html>

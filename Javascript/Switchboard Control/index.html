@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switchboard Control</title>
+</head>
+<body>
+  <h2>Switchboard Control (let, var, const)</h2>
+  <pre id="output"></pre>
+
+  <script>
+    const buildingName = "Sunrise Apartments";
+    let status = "OFF";
+    var devices = ["Light", "Fan", "AC"];
+    let out = "";
+
+    for (var i = 0; i < devices.length; i++) {
+        status = (status === "OFF") ? "ON" : "OFF";
+        out += `Checking Switch ${i + 1}: ${devices[i]} is ${status}\n`;
+    }
+
+    out += `All switches checked for ${buildingName}.\n`;
+    out += `Outside loop: var counter is ${i}\n`;
+
+    document.getElementById("output").textContent = out;
+    buildingName = "Greenwood Towers";
+  </script>
+</body>
+</html>
